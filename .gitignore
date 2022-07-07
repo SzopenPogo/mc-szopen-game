@@ -1,0 +1,6 @@
+API/node_modules
+API/dist
+API/images
+client/node_modules
+client/.pnp
+client/.pnp.js

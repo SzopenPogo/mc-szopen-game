@@ -1,0 +1,1 @@
+export const TOKEN_SECRET = '6WebMCGame6BySzopenScript6';

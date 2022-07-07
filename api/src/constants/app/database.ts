@@ -1,0 +1,1 @@
+export const connectionURL = 'mongodb+srv://Szopen:ZJ2zunt6jRkaOFs7@cluster0.lcg5h.mongodb.net/MCSzopenGame?retryWrites=true&w=majority';
