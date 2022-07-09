@@ -1,5 +1,5 @@
 import { Router } from "express";
-import accountEdit from "../controllers/account/actions/accountEdit";
+import accountEdit from "../controllers/account/manage/accountEdit";
 import accountGetMe from "../controllers/account/actions/accountGetMe";
 import accountLogin from "../controllers/account/actions/accountLogin";
 import accountLogout from "../controllers/account/actions/accountLogout";

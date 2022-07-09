@@ -3,6 +3,7 @@ export interface ICharacterData {
   name: string;
   lvl: number;
   experience: number;
+  money: number;
   health: number;
   baseDamage: number;
   stamina: number;

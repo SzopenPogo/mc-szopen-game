@@ -9,7 +9,7 @@ export const validateUpdateOperator = (
   const isValidOperator = updates.every(update => allowedUpdates.includes(update));
 
   if (!isValidOperator) {
-    const errorMessage = createErrorMessage(400, 'Invalid operator');
+    const errorMessage = createErrorMessage(413, 'Invalid operator');
     return {isValid: false, message: errorMessage};
   }
 

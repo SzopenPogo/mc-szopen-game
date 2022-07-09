@@ -1,6 +1,7 @@
-API/node_modules
-API/dist
-API/images
+api/node_modules
+api/dist
+api/images
+api/src/constants/app/database.ts
 client/node_modules
 client/.pnp
 client/.pnp.js
