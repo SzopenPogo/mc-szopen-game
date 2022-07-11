@@ -2,6 +2,16 @@ import { model, Schema } from "mongoose";
 import { BASE_ARMOR, BASE_CRITICAL_STRIKE, BASE_DAMAGE, BASE_HEALTH, BASE_HIT_POINTS, BASE_MONEY, BASE_STAMINA } from "../constants/character/characterDefaultStats";
 import { CHARACTER_EXPERIENCE_LVL_MULTIPLIER } from "../constants/character/characterMultipliers";
 import { ICharacterModel } from "../interfaces/character/ICharacterModel";
+import { ICharacterUpdateStat } from "../interfaces/character/ICharacterUpdate";
+import addCharacterExperience from "../methods/character/addCharacterExperience";
+import addCharacterLevelAndSetExperience from "../methods/character/addCharacterLevelAndSetExperience";
+import addCharacterMoney from "../methods/character/addCharacterMoney";
+import addCharacterStat from "../methods/character/addCharacterStat";
+import calculateCharacterHealth from "../methods/character/calculateCharacterHealth";
+import calculateCharacterStatPrice from "../methods/character/calculateCharacterStatPrice";
+import setCharacterExperience from "../methods/character/setCharacterExperience";
+import { createInfoMessage } from "../utils/messages/createInfoMessage";
+import { validateUpdateOperator } from "../utils/validation/validateUpdateOperator";
 
 const characterSchema = new Schema<ICharacterModel>({
   accountId: {
@@ -90,17 +100,8 @@ const characterSchema = new Schema<ICharacterModel>({
 
 //METHODS
 //Set character health based on stats and level
-characterSchema.methods.setHealth = async function (this: ICharacterModel) {
-  const character = this;
-
-  const characterStamina = character.stamina;
-  const characterLevel = character.lvl;
-
-  const staminaHealthValue = +((BASE_HEALTH / 10) * characterStamina).toFixed();
-  const levelHealthValue = +(BASE_HEALTH * characterLevel).toFixed();
-
-  character.health = levelHealthValue + staminaHealthValue;
-  await character.save();
+characterSchema.methods.calculateHealth = function (this: ICharacterModel) {
+  return calculateCharacterHealth(this);
 }
 
 //METHODS
@@ -109,32 +110,7 @@ characterSchema.methods.addExperience = async function (
   this: ICharacterModel,
   experience: number
   ) {
-  const character = this;
-  
-  const characterExperience = character.experience;
-  const characterLevel = character.lvl;
-
-  const experienceToLevelUp = characterLevel * CHARACTER_EXPERIENCE_LVL_MULTIPLIER
-  const isNextLevel = characterExperience + experience >= experienceToLevelUp;
-
-  const experienceOnNextLevel = (characterLevel + 1) * CHARACTER_EXPERIENCE_LVL_MULTIPLIER
-
-  if(isNextLevel && experience > experienceOnNextLevel) {
-    const remainingExperience = experience - experienceOnNextLevel;
-
-    await character.addLevelAndSetExperience(remainingExperience);
-    //Recursion (addExperience)
-    return await character.addExperience(remainingExperience);
-  }
-
-  if(isNextLevel) {
-    const remainingExperience = experience - experienceToLevelUp;
-    return await character.addLevelAndSetExperience(remainingExperience);
-  }
-  
-  await character.setExperience(experience);
-
-  //Everything is saved in addLevelAndSetExperience and  setExperience functions;
+  await addCharacterExperience(this, experience);
 }
 
 //METHODS
@@ -143,24 +119,16 @@ characterSchema.methods.addLevelAndSetExperience = async function (
   this: ICharacterModel,
   experience: number
   ) {
-  const character = this;
-
-  character.lvl += 1;
-  character.experience = experience
-
-  await character.save();
+  await addCharacterLevelAndSetExperience(this, experience);
 }
 
 //METHODS
-//Set character experience
+//Set character experience and level up (if level up)
 characterSchema.methods.setExperience = async function (
   this: ICharacterModel,
   experience: number
   ) {
-  const character = this;
-  character.experience = experience
-
-  await character.save();
+  await setCharacterExperience(this, experience);
 }
 
 //METHODS
@@ -169,23 +137,39 @@ characterSchema.methods.addMoney = async function (
   this: ICharacterModel,
   money: number
   ) {
-  const character = this;
-  character.money += money;
-
-  await character.save();
+  await addCharacterMoney(this, money);
 }
 
+//METHODS
+//Add character stat
+characterSchema.methods.addStat = async function (
+  this: ICharacterModel,
+  updates: Array<ICharacterUpdateStat>
+  ) {
+  return await addCharacterStat(this, updates);
+}
+
+//METHODS
+//Calculate character update stats price
+characterSchema.methods.calculateStatPrice = function (
+  this: ICharacterModel,
+  updates: Array<ICharacterUpdateStat>
+) {
+  return calculateCharacterStatPrice(this, updates);
+}
 
 //PRE
-//Set character health if level or stamina changed
 characterSchema.pre('save', async function (next) {
   const character = this;
+
+  //Set character health if level changed
   if (character.isModified('lvl')) {
-    await character.setHealth();
+    character.health = character.calculateHealth();
   }
 
+  //Set character health if stamina changed
   if (character.isModified('stamina')) {
-    await character.setHealth();
+    character.health = character.calculateHealth();
   }
 
   next();

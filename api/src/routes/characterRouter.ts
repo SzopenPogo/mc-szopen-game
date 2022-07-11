@@ -1,4 +1,5 @@
 import { Router } from "express";
+import characterBuyStat from "../controllers/character/characterBuyStat";
 import characterCreate from "../controllers/character/characterCreate";
 import characterGetMy from "../controllers/character/characterGetMy";
 import characterGetMyById from "../controllers/character/characterGetMyById";
@@ -20,6 +21,13 @@ characterRouter.get('/my/:id', auth, characterGetMyById);
 // DESCRIPTION: Get all user characters
 // ACCESS: PRIVATE
 characterRouter.get('/my', auth, characterGetMy);
+
+// TYPE: POST /character/my/buyStat/:id
+// DESCRIPTION: Buy character one statistic point
+// DESCRIPTION: Available stats: stamina, hitPoints, criticalStrike
+// ACCEPT: Array<{statName: string, amount: number}>
+// ACCESS: PRIVATE
+characterRouter.post('/my/buyStat/:id', auth, characterBuyStat);
 
 
 

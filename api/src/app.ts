@@ -21,7 +21,7 @@ app.use(express.json());
 app.use('/account', accountRouter);
 
 // CHARACTER
-// create, addStatisticPoint, changeStatus, addExpirience
+// create, getMe, getMeById, addStatisticPoint
 app.use('/character', characterRouter);
 
 
