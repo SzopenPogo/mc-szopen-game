@@ -7,6 +7,7 @@ import connectDatabase from "./config/database";
 import routeNotFound from "./middleware/routeNotFound";
 import accountRouter from "./routes/accountRouter";
 import characterRouter from "./routes/characterRouter";
+import misionRouter from "./routes/missionRouter";
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.use('/account', accountRouter);
 // create, getMe, getMeById, addStatisticPoint
 app.use('/character', characterRouter);
 
+// MISSION
+// getRandomMission
+app.use('/mission', misionRouter);
 
 //SERVE IMAGES FROM SERVER (SERVER_URL/images/...)
 const dirname = path.resolve();

@@ -6,6 +6,7 @@ export interface ICharacterData {
   money: number;
   health: number;
   baseDamage: number;
+  damage: number;
   stamina: number;
   hitPoints: number;
   criticalStrike: number;
