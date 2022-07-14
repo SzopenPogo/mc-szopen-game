@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { IAuthRequest } from "../../constants/account/IAuthRequest";
+import { IAuthRequest } from "../../interfaces/account/IAuthRequest";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";
 
 const characterGetMy = async (req: IAuthRequest, res: Response) => {

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
-import { IAuthRequest } from "../constants/account/IAuthRequest";
+import { IAuthRequest } from "../interfaces/account/IAuthRequest";
 import { TOKEN_SECRET } from "../constants/account/token";
 import { ITokenDecoded } from "../interfaces/token/IToken";
 import Account from "../models/accountModel";

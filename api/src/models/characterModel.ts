@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { BASE_ARMOR, BASE_CRITICAL_STRIKE, BASE_DAMAGE, BASE_HEALTH, BASE_HIT_POINTS, BASE_MONEY, BASE_STAMINA } from "../constants/character/characterDefaultStats";
-import calculateCharacterCriticalStrikeChance from "../controllers/character/calculateCharacterCriticalStrikeChance";
+import calculateCharacterCriticalStrikeChance from "../methods/character/calculateCharacterCriticalStrikeChance";
 import { ICharacterModel } from "../interfaces/character/ICharacterModel";
 import { ICharacterUpdateStat } from "../interfaces/character/ICharacterUpdate";
 import addCharacterExperience from "../methods/character/addCharacterExperience";
@@ -14,6 +14,10 @@ import dealCharacterCriticalDamage from "../methods/character/dealCharacterCriti
 import setCharacterBaseDamage from "../methods/character/setCharacterBaseDamage";
 import setCharacterBusy from "../methods/character/setCharacterBusy";
 import setCharacterExperience from "../methods/character/setCharacterExperience";
+import dealCharacterDamage from "../methods/character/dealCharacterDamage";
+import takeCharacterDamage from "../methods/character/takeCharacterDamage";
+import { IMissionData } from "../interfaces/mission/IMissionData";
+import setCharacterActiveMissions from "../methods/character/setCharacterActiveMissions";
 
 const characterSchema = new Schema<ICharacterModel>({
   accountId: {
@@ -104,7 +108,41 @@ const characterSchema = new Schema<ICharacterModel>({
     trim: true,
     required: true,
     default: BASE_ARMOR
-  }
+  },
+
+  activeMissions: [{
+    name: {
+      type: String,
+      trim: true,
+      required: true
+    },
+  
+    description: {
+      type: String,
+      trim: true,
+      required: true,
+      max: 350
+    },
+  
+    reward: {
+      money: {
+        type: Number,
+        trim: true,
+        required: false
+      },
+      experience: {
+        type: String,
+        trim: true,
+        required: false
+      }
+    },
+  
+    durationInSecounds: {
+      type: Number,
+      trim: true,
+      required: true
+    }
+  }]
 });
 
 //VIRTUAL
@@ -209,6 +247,8 @@ characterSchema.methods.setBaseDamage = async function (
   return await setCharacterBaseDamage(this, value);
 }
 
+//ADD DEAL NORMAL DAMAGE
+
 //METHODS
 //Change character isBusy status
 characterSchema.methods.setBusy = async function (
@@ -216,6 +256,32 @@ characterSchema.methods.setBusy = async function (
   status: boolean
 ) {
   return await setCharacterBusy(this, status);
+}
+
+//METHODS
+//Deal damage
+characterSchema.methods.dealDamage = function (
+  this: ICharacterModel
+) {
+  return dealCharacterDamage(this);
+}
+
+//METHODS
+//Take damage
+characterSchema.methods.takeDamage = function (
+  this: ICharacterModel,
+  damage: number
+) {
+  return takeCharacterDamage(this, damage);
+}
+
+//METHODS
+//Set active missions. If missions array is empty then reset active missions
+characterSchema.methods.setActiveMissions = async function (
+  this: ICharacterModel,
+  missions: Array<IMissionData>
+) {
+  return await setCharacterActiveMissions(this, missions);
 }
 
 //PRE

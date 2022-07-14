@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { IAuthRequest } from "../../constants/account/IAuthRequest";
+import { IAuthRequest } from "../../interfaces/account/IAuthRequest";
 import { ICharacterUpdateResponse, ICharacterUpdateStat } from "../../interfaces/character/ICharacterUpdate";
 import Character from "../../models/characterModel";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";

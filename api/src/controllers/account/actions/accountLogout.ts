@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { IAuthRequest } from "../../../constants/account/IAuthRequest";
+import { IAuthRequest } from "../../../interfaces/account/IAuthRequest";
 import { IToken } from "../../../interfaces/token/IToken";
 import { createErrorMessage } from "../../../utils/messages/createErrorMessage";
 

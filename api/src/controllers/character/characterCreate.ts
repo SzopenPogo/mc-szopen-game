@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { IAuthRequest } from "../../constants/account/IAuthRequest";
+import { IAuthRequest } from "../../interfaces/account/IAuthRequest";
 import Character from "../../models/characterModel";
 import formatName from "../../utils/format/formatName";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";

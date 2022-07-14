@@ -26,7 +26,7 @@ app.use('/account', accountRouter);
 app.use('/character', characterRouter);
 
 // MISSION
-// getRandomMission
+// getRandomMission, startMission, getActiveMission, finishMission
 app.use('/mission', misionRouter);
 
 //SERVE IMAGES FROM SERVER (SERVER_URL/images/...)

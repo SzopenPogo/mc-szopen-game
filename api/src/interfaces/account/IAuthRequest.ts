@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { IAccountModel } from "../../interfaces/account/IAccountModel";
+import { IAccountModel } from "./IAccountModel";
 
 export interface IAuthRequest extends Request {
   account?: IAccountModel;

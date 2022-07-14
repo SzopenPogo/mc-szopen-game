@@ -8,4 +8,6 @@ export interface IMissionModel extends Document, IMissionData {
   characterId: Schema.Types.ObjectId;
   isCompleted: boolean;
   startUnixTime: number;
+  finishUnixTime: number;
+  finishMission(): Promise<void>;
 }
