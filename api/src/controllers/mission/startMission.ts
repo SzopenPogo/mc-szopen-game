@@ -1,5 +1,6 @@
 import { Response } from "express";
 import { IAuthMissionRequest } from "../../interfaces/mission/IAuthMissionRequest";
+import Enemy from "../../models/enemyModel";
 import Mission from "../../models/missionModel";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";
 import getUnixTime from "../../utils/time/getUnixTime";
@@ -38,13 +39,14 @@ const startMission = async (req: IAuthMissionRequest, res: Response) => {
       characterId: character._id,
       isCompleted: false,
       startUnixTime: missionStartUnixTime,
-      finishUnixTime: missionFinishUnixTime,
+      finishUnixTime: missionStartUnixTime + 10,  //TEST TIME!!!! CHANGE TO missionFinishUnixTime
       name,
       description,
       reward,
       durationInSecounds
     });
 
+    await mission.generateEnemy(character);
     await mission.save();
     await character.setBusy(true);
     await character.setActiveMissions([]);

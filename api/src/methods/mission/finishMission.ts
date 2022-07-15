@@ -1,7 +1,7 @@
 import { IMissionModel } from "../../interfaces/mission/IMissionModel";
 import getUnixTime from "../../utils/time/getUnixTime";
 
-const finishMission = async (mission: IMissionModel) => {
+const finishMission = async (mission: IMissionModel, isSuccess: boolean) => {
   const actualUnixTime = getUnixTime();
   const finishTime = mission.finishUnixTime;
 
@@ -10,6 +10,8 @@ const finishMission = async (mission: IMissionModel) => {
   }
 
   mission.isCompleted = true;
+  mission.isSuccess = isSuccess;
+
   await mission.save();
 }
 

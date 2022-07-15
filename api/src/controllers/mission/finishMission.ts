@@ -1,5 +1,6 @@
 import { Response } from "express";
 import { IAuthMissionRequest } from "../../interfaces/mission/IAuthMissionRequest";
+import Enemy from "../../models/enemyModel";
 import Mission from "../../models/missionModel";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";
 import getUnixTime from "../../utils/time/getUnixTime";
@@ -21,19 +22,41 @@ const finishMission = async (req: IAuthMissionRequest, res: Response) => {
 
     //Check if mission isn't completed
     if(finishTime > actualUnixTime) {
-      const errorMessage = createErrorMessage(404, 'Can\'t finish mission yet');
+      const errorMessage = createErrorMessage(400, 'Can\'t finish mission yet');
       return res.status(errorMessage.status).send(errorMessage);
     }
 
+    //Check if mission is completed
+    if(mission.isCompleted) {
+      const errorMessage = createErrorMessage(400, 'Mission is completed');
+      return res.status(errorMessage.status).send(errorMessage);
+    }
+
+    //Find generated enemy
+    const enemy = await Enemy.findOne({missionId: mission._id});
+    if(!enemy) {
+      //Finish Mission
+      await mission.finishMission(false);
+      await character.setBusy(false);
+
+      const errorMessage = createErrorMessage(404, 'Enemy not found');
+      return res.status(errorMessage.status).send(errorMessage); 
+    }
+
+    const isCharacterWin = await enemy.fight(character);
     const {reward} = mission;
+    
+    //If character win add reward
+    if(isCharacterWin) {
+      await character.setExperience(reward.experience);
+      await character.addMoney(reward.money);
+    }
 
-    await mission.finishMission();
+    //Finish Mission
+    await mission.finishMission(isCharacterWin);
     await character.setBusy(false);
-    // GENERATE BOSS FIGHT. IF WIN DO:
-    // await character.setExperience(reward.experience);
-    // await character.addMoney(reward.money);
 
-    res.status(200).send(character);
+    res.status(200).send([reward, enemy.combatLog]);
   } catch (error) {
     const errorMessage = createErrorMessage(500, 'Finish mission failed', error);
     res.status(errorMessage.status).send(errorMessage);

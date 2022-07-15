@@ -1,0 +1,1 @@
+export const ENEMY_LEVEL_NOISE = 3;

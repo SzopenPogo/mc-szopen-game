@@ -1,0 +1,5 @@
+export const ENEMY_MIN_HEALTH_PERCENT = 10;
+export const ENEMY_MAX_HEALTH_PERCENT = 25;
+
+export const ENEMY_MIN_DAMAGE_PERCENT = 40;
+export const ENEMY_MAX_DAMAGE_PERCENT = 20;
