@@ -9,11 +9,9 @@ const fightEnemy = async (
   let characterHealth = character.health;
   let enemyHealth = enemy.health;
   let isCharacterWin = false;
+  let isFinished = false;
 
-  const combatLog: Array<IEnemyCombat> = [];
-
-  //TODO
-  while (enemyHealth >= 0 || characterHealth >= 0) {
+  while (!isFinished) {
     //Character deal damage to enemy
     const characterDamage = character.dealDamage();
     enemyHealth -= characterDamage;
@@ -22,24 +20,27 @@ const fightEnemy = async (
     const enemyDamage = enemy.dealDamage();
     characterHealth -= enemyDamage;
 
+    //Combat log
     const combatData: IEnemyCombat = {
       characterHealth,
       characterDamage,
       enemyHealth,
       enemyDamage
     }
-    
-    combatLog.push(combatData);
+    enemy.combatLog.push(combatData);
     
     if(enemyHealth <= 0) {
       isCharacterWin = true;
       await enemy.setDefeated();
+      break;
+    }
+
+    if(enemyHealth <= 0 || characterHealth <= 0) {
+      isFinished = true;
     }
   }
   
-  enemy.combatLog = combatLog;
   await enemy.save();
-
   return isCharacterWin;
 }
 

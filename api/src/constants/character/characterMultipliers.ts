@@ -1,6 +1,12 @@
 //character lvl * experience multiplier
 export const CHARACTER_EXPERIENCE_LVL_MULTIPLIER = 120;
 
+//mission exp + lvl * multiplier
+export const CHARACTER_EXPERIENCE_MISSION_MULTIPLIER = 10;
+
+//mission money + lvl * multiplier
+export const CHARACTER_MONEY_MISSION_MULTIPLIER = 2;
+
 //character stat * stat multiplier
 export const CHARACTER_STAT_PRICE_MULTIPLIER = 2;
 

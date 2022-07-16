@@ -48,7 +48,7 @@ const finishMission = async (req: IAuthMissionRequest, res: Response) => {
     
     //If character win add reward
     if(isCharacterWin) {
-      await character.setExperience(reward.experience);
+      await character.addExperience(reward.experience);
       await character.addMoney(reward.money);
     }
 
@@ -56,7 +56,14 @@ const finishMission = async (req: IAuthMissionRequest, res: Response) => {
     await mission.finishMission(isCharacterWin);
     await character.setBusy(false);
 
-    res.status(200).send([reward, enemy.combatLog]);
+    const responseMessage = {
+      reward, 
+      isCompleted: mission.isCompleted, 
+      isSuccess: mission.isSuccess, 
+      combatLog: enemy.combatLog
+    }
+
+    res.status(200).send(responseMessage);
   } catch (error) {
     const errorMessage = createErrorMessage(500, 'Finish mission failed', error);
     res.status(errorMessage.status).send(errorMessage);

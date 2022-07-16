@@ -5,3 +5,5 @@ api/src/constants/app/database.ts
 client/node_modules
 client/.pnp
 client/.pnp.js
+client/coverage
+client/build
