@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { LOGIN_ROUTE } from "data/routes/clientRoutes";
+import MasterLayout from "layouts/MasterLayout/MasterLayout";
+import Landing from "pages/Landing";
+import Login from "pages/Login";
+import { Route, Routes } from "react-router";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MasterLayout>
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        
+        <Route path={LOGIN_ROUTE} element={<Login />} />
+      </Routes>
+    </MasterLayout>
   );
 }
 
