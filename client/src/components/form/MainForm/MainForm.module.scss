@@ -1,0 +1,30 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_fonts';
+
+
+.main-form {
+  width: 100%;
+  padding: 1rem;
+  background-color: $main-form-color;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .5rem;
+
+  .title {
+    margin: .25rem 0;
+    font-size: 2.75rem;
+    font-family: $title-font;
+  }
+
+  .logo {
+    width: 6.5rem;
+  }
+
+  .description {
+    margin: 0;
+    font-size: 1rem;
+  }
+}

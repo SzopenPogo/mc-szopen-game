@@ -1,3 +1,6 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_fonts';
+
 //Font Family: Bebas Neue
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
@@ -9,10 +12,12 @@
 }
 
 body {
-  font-family: 'Inconsolata', sans-serif;
+  font-family: $main-font, sans-serif;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
   width: 100vw;
-  min-height: 100vh;
+
+  background-color: $black;
+  color: white;
 }

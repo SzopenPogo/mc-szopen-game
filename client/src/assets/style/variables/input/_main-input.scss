@@ -1,0 +1,62 @@
+@import 'assets/style/variables/_transition';
+@import 'assets/style/variables/_colors';
+
+$unfocused-font-size: .85rem;
+
+@mixin main-input-container($height) {
+  width: 100%;
+  height: $height;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: .25rem;
+
+  input:focus + label {
+    font-size: $unfocused-font-size;
+    color: white;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px $main-form-color inset !important;
+    -webkit-box-shadow: 0 0 0 1000px $main-form-color inset !important;
+    -webkit-text-fill-color: white;
+    background-color: transparent !important;
+  }
+}
+
+@mixin main-input {
+  width: 100%;
+  padding: .35rem;
+
+  order: 1;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  font-size: $unfocused-font-size;
+  color: white;
+
+  transition: $transition-150;
+
+  &:focus{
+    font-size: 1.1rem;
+  }
+}
+
+@mixin main-label {
+  order: 0;
+  font-size: 1rem;
+  color: $washy-white;
+  transition: $transition-150;
+}

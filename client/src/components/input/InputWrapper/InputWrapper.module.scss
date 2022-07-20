@@ -1,0 +1,30 @@
+@import 'assets/style/variables/_transition';
+@import 'assets/style/variables/border/_border-props';
+@import 'assets/style/variables/border/_border';
+@import 'assets/style/variables/input/_main-input';
+
+.input-wrapper {
+  @include main-input-container(4rem);
+  padding: .5rem;
+
+  border-radius: $border-radious;
+  border: $washy-white-border;
+
+  transition: $transition-150;
+
+  label {
+    @include main-label();
+  }
+
+  input {
+    @include main-input();
+  }
+}
+
+.input-wrapper--active {
+  border: $white-border;
+}
+
+.input-wrapper--invalid {
+  border: $invalid-border;
+}

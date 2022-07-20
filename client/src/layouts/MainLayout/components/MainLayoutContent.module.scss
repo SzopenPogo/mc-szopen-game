@@ -2,7 +2,6 @@
 
 .content {
   max-width: 100%;
-  min-height: 80vh;
-
-  margin-top: calc($header-height + 1rem);
+  height: $noscroll-height;
+  margin-top: $header-margin;
 }
