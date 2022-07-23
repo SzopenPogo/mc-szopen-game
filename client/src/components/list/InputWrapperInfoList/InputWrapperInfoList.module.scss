@@ -1,0 +1,14 @@
+@import 'assets/style/variables/_colors';
+
+
+.input-wrapper-info {
+  width: 100%;
+  margin: .5rem 0;
+  padding: 0;
+
+  list-style: none;
+
+  .input-wrapper-info__item {
+    color: $red;
+  }
+}

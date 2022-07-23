@@ -1,0 +1,8 @@
+@import 'assets/style/variables/_colors';
+
+.authentication-link {
+  color: $washy-white;
+  .authentication-link--link {
+    color: white;
+  }
+}

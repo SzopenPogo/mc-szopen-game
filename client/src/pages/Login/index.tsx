@@ -1,14 +1,14 @@
-import MainLayout from "layouts/MainLayout/MainLayout";
+import AuthenticationLayout from "layouts/AuthenticationLayout/AuthenticationLayout";
 import LoginForm from "pages/Login/components/LoginForm/LoginForm";
 import classes from './index.module.scss';
 
 const Login = () => {
   return (
-    <MainLayout>
+    <AuthenticationLayout>
       <section className={classes['login']}>
         <LoginForm />
       </section>
-    </MainLayout>
+    </AuthenticationLayout>
   )
 }
 

@@ -8,6 +8,7 @@ import routeNotFound from "./middleware/routeNotFound";
 import accountRouter from "./routes/accountRouter";
 import characterRouter from "./routes/characterRouter";
 import misionRouter from "./routes/missionRouter";
+import configRouter from "./routes/configRouter";
 
 const app = express();
 
@@ -17,6 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 //ROUTES
+// CONFIG 
+// get
+app.use('/config', configRouter);
+
 // ACCOUNT 
 // register, login, logout, logoutAll, getMe, editMe
 app.use('/account', accountRouter);

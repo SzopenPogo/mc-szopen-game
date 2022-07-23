@@ -1,0 +1,29 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_transition';
+
+.toggle-visibility {
+  width: 4rem;
+  height: 100%;
+
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+  background-image: url('../../../assets/images/Icon/white/eyeCrossedIcon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+
+  transition: $transition-150;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+.toggle-visibility--active {
+  background-image: url('../../../assets/images/Icon/white/eyeIcon.svg');
+}

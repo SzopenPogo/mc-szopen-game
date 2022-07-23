@@ -1,6 +1,11 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import InputWrapper from 'components/input/InputWrapper/InputWrapper';
 import useAssignRefs from 'hooks/useAssignRefs/useAssignRefs';
 import { ChangeEvent, forwardRef, useEffect, useId, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { setEmailValid } from 'store/authentication/actions/authentication-email-actions';
 import validator from 'validator';
 
 interface Props {
@@ -14,20 +19,26 @@ const EmailInput = forwardRef<HTMLInputElement, Props>(({
   value = '',
   isReadonly
 }, ref) => {
+  const dispatch = useDispatch() as Dispatch<any>;
+
   const emailLocalRef = useRef<HTMLInputElement>(null);
   const emailRef = useAssignRefs(emailLocalRef, ref);
 
+  const isValid = useSelector((state: RootState) => state.authentication.isEmailValid);
+
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [emailValue, setEmailValue] = useState<string>(value);
-  const [isValid, setIsValid] = useState<boolean>(true);
+
+  useEffect(() => {
+    //Reset email valid on first render
+    dispatch(setEmailValid(false));
+  }, [dispatch])
 
   useEffect(() => {
     //Validate email
-    if(!isFocus && emailValue.length > 0) {
-      const isValidEmail = validator.isEmail(emailValue);
-      setIsValid(isValidEmail);
-    }
-  }, [isFocus, emailValue])
+    const isValidEmail = validator.isEmail(emailValue);
+    dispatch(setEmailValid(isValidEmail));
+  }, [emailValue, dispatch])
   
 
   const focusEmail = () => {

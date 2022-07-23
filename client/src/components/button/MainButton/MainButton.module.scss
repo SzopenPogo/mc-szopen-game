@@ -1,0 +1,31 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_fonts';
+@import 'assets/style/variables/_transition';
+@import 'assets/style/variables/border/_border-props';
+
+
+.main-button {
+  cursor: pointer;
+  width: 100%;
+  padding: 1rem;
+
+  border-radius: $border-radious;
+  border: none;
+  outline: none;
+  background-color: $yellow;
+
+  color: black;
+  font-size: 1.45rem;
+  font-family: $title-font;
+
+  transition: $transition-150;
+
+  &:hover {
+    background-color: $light-yellow;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $light-gray;
+  }
+}

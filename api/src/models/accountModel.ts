@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import validator from "validator";
-import { passwordRegExp } from "../constants/account/password";
+import { passwordRegExp, PASSWORD_MIN_LENGTH } from "../constants/account/password";
 import { IAccountModel } from "../interfaces/account/IAccountModel";
 import { IAccountStatics } from "../interfaces/account/IAccountStatics";
 import bcryptjs from 'bcryptjs';
@@ -29,7 +29,7 @@ const accountSchema = new Schema<IAccountModel, IAccountStatics>({
     type: String,
     required: true,
     trim: true,
-    minlength: 6,
+    minlength: PASSWORD_MIN_LENGTH,
     validate(value: string) {
       if (!passwordRegExp.test(value)) {
         throw new Error('Weak password');

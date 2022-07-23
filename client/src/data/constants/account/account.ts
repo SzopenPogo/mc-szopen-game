@@ -1,0 +1,5 @@
+export const ACCOUNT_TOKEN_COOKIE_NAME = 'token';
+
+export const ACCOUNT_REQUEST = 'ACCOUNT_REQUEST';
+export const ACCOUNT_SUCCESS = 'ACCOUNT_SUCCESS';
+export const ACCOUNT_FAIL = 'ACCOUNT_FAIL';
