@@ -1,0 +1,31 @@
+@import 'assets/style/variables/_z-index';
+
+.backdrop {
+  z-index: $backdrop-z-index;
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  width: 100%;
+  height: 100%;
+  
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enter-active {
+  opacity: 1;
+  transition: linear 300ms;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exit-active {
+  opacity: 0;
+  transition: linear 300ms;
+}

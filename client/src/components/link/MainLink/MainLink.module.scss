@@ -1,0 +1,9 @@
+@import 'assets/style/variables/_button';
+
+.main-link {
+  width: 100%;
+
+  @include main-button-style();
+  text-align: center;
+  text-decoration: none;
+}

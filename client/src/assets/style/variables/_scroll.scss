@@ -1,0 +1,15 @@
+@import './colors';
+@import './border/border-props';
+
+@mixin scroll($color) {
+  &::-webkit-scrollbar {
+    height: .65rem;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: $border-radious;
+  }
+
+  scrollbar-width: thin;
+}

@@ -1,0 +1,21 @@
+@import 'assets/style/variables/_dimensions';
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/border/_border-props';
+
+.register {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .75rem;
+
+  @media (min-width: $mobile-width) {
+    width: 30rem;
+    padding: 1rem 2rem;
+
+    background-color: $main-form-color;
+    border-radius: $border-radious;
+  }
+}

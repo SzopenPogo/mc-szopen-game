@@ -1,15 +1,15 @@
 import AuthenticationLayout from "layouts/AuthenticationLayout/AuthenticationLayout";
-import LoginForm from "pages/Login/components/LoginForm/LoginForm";
+import RegisterForm from "pages/authentication/Register/components/RegisterForm/RegisterForm";
 import classes from './index.module.scss';
 
-const Login = () => {
+const Register = () => {
   return (
     <AuthenticationLayout>
-      <section className={classes['login']}>
-        <LoginForm />
+      <section className={classes['register']}>
+        <RegisterForm />
       </section>
     </AuthenticationLayout>
   )
 }
 
-export default Login;
+export default Register;

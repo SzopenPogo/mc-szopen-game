@@ -41,6 +41,28 @@ const accountSlice = createSlice({
           state.error = payload;
           break;
       }
+    },
+    register(state, action) {
+      const { type, token, payload } = action.payload;
+      
+      switch (type) {
+        case ACCOUNT_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case ACCOUNT_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.account = payload;
+          state.token = token;
+
+          Cookies.set(ACCOUNT_TOKEN_COOKIE_NAME, token, { expires: 7 });
+          break;
+        case ACCOUNT_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
     }
   }
 })

@@ -1,0 +1,25 @@
+@import 'assets/style/variables/_scroll';
+@import 'assets/style/variables/_colors';
+
+.character-select-container {
+  overflow: auto;
+
+  width: 100%;
+  padding: 0 0 1rem 0;
+  display: flex;
+
+  @include scroll($washy-white);
+
+  .character-select-list {
+    margin: 0;
+    padding: 0;
+  
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: .5rem;
+  
+    list-style: none;
+  }
+}

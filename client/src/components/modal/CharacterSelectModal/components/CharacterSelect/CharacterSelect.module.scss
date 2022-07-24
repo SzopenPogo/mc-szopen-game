@@ -1,0 +1,74 @@
+@import 'assets/style/variables/border/_border-props';
+@import 'assets/style/variables/border/_border';
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_transition';
+
+$character-select-border-size: 2px;
+
+.character-select {
+  overflow: hidden;
+  cursor: pointer;
+
+  position: relative;
+
+  width: 15rem;
+  height: 15rem;
+
+  background-color: $gray;
+  border-radius: $border-radious;
+  @include balck-border($character-select-border-size);
+
+  transition: $transition-150;
+  transform: scale(.98);
+
+  &:hover {
+    transform: scale(1);
+    @include washy-white-border($character-select-border-size);
+    background: linear-gradient(0deg, $gray 0%, $light-gray 100%);
+  }
+
+  .character-select__avatar {
+    z-index: 1;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: url('../../../../../assets/images/character/characterAvatarPlaceholder.webp');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    border-radius: $border-radious;
+  }
+
+  .character-select__data {
+    z-index: 2;
+
+    position: absolute;
+    bottom: .5rem;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5rem;
+
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 1);
+
+    .character-select__data-lvl {
+      color: $yellow;
+    }
+
+    .character-select__data-name,
+    .character-select__data-lvl {
+      margin: 0;
+    }
+  }
+}

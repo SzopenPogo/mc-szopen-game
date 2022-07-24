@@ -3,6 +3,8 @@
 @import 'assets/style/variables/border/_border';
 @import 'assets/style/variables/input/_main-input';
 
+$wrapper-border-size: 1px;
+
 .wrapper {
   width: 100%;
   .input-wrapper {
@@ -12,7 +14,7 @@
     padding: .5rem;
   
     border-radius: $border-radious;
-    border: $washy-white-border;
+    @include white-border($wrapper-border-size);
   
     transition: $transition-150;
   
@@ -26,10 +28,10 @@
   }
   
   .input-wrapper--active {
-    border: $white-border;
+    @include white-border($wrapper-border-size);
   }
   
   .input-wrapper--invalid {
-    border: $invalid-border;
+    @include invalid-border($wrapper-border-size);
   }
 }

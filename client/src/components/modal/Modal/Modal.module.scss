@@ -1,0 +1,57 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_z-index';
+@import 'assets/style/variables/_dimensions';
+@import 'assets/style/variables/border/_border-props';
+
+.modal {
+  z-index: $modal-z-index;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 1rem;
+  width: 100vw;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: $gray;
+
+  transition: ease-in 300ms;
+
+  @media (min-width: $mobile-width) {
+    min-width: 15rem;
+    width: auto;
+    border-radius: $border-radious;
+  }
+
+  .modal--close-button {
+    position: absolute;
+    top: .35rem;
+    right: .35rem;
+
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enter-active {
+  opacity: 1;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exit-active {
+  opacity: 0;
+}
