@@ -1,4 +1,4 @@
-import classes from './MainButton.module.scss';
+import classes from './MinimalistButton.module.scss';
 
 interface Props {
   title: string;
@@ -7,17 +7,17 @@ interface Props {
   isActive?: boolean;
 }
 
-const MainButton = ({
+const MinimalistButton = ({
   title,
   isSubmit = false,
   onClick,
   isActive = true
 }: Props) => {
   const buttonType = isSubmit ? 'submit' : 'button';
-  
+
   return (
     <button
-      className={classes['main-button']}
+      className={classes['minimalist-button']}
       type={buttonType}
       onClick={onClick}
       disabled={!isActive}
@@ -27,4 +27,4 @@ const MainButton = ({
   )
 }
 
-export default MainButton;
+export default MinimalistButton;

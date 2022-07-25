@@ -11,12 +11,14 @@ interface Props {
   title: string;
   value?: string;
   isReadonly?: boolean;
+  isRequired?: boolean;
 }
 
 const PasswordInput = forwardRef<HTMLInputElement, Props>(({
   title,
   value = '',
-  isReadonly
+  isReadonly,
+  isRequired = false
 }, ref) => {
   const dispatch = useDispatch() as Dispatch<any>;
   
@@ -81,7 +83,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(({
   const inputType = isVisible ? 'text' : 'password';
   
   const passwordInfo = [] as Array<string>;
-  !isValidStructure && passwordInfo.push('A least one number and one CAPITAL letter');
+  !isValidStructure && passwordInfo.push('A least one number and one CAPITAL letter and number');
   !isValidLength && passwordInfo.push(`Minimum ${PASSWORD_MIN_LENGTH} characters`);
   
   return (
@@ -107,6 +109,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(({
         readOnly={isReadonly}
         value={passwordValue}
         onChange={passwordValueHandler}
+        required={isRequired}
       />
       <ToggleVisibilityButton
         onClick={togglePasswordVisibility}

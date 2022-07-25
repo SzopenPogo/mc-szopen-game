@@ -7,16 +7,18 @@ const tokenCookie = accountTokenStoredCookie && accountTokenStoredCookie !== 'un
   ? accountTokenStoredCookie
   : '';
 
+const initialAccountData = {
+  _id: '',
+  email: '',
+  isActive: false
+}
+
 const accountSlice = createSlice({
   name: 'account',
   initialState: {
     loading: false,
     error: '',
-    account: {
-      _id: '',
-      email: '',
-      isActive: false,
-    },
+    account: initialAccountData,
     token: tokenCookie
   },
   reducers: {
@@ -57,6 +59,66 @@ const accountSlice = createSlice({
           state.token = token;
 
           Cookies.set(ACCOUNT_TOKEN_COOKIE_NAME, token, { expires: 7 });
+          break;
+        case ACCOUNT_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    logout(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case ACCOUNT_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case ACCOUNT_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.account = initialAccountData;
+          state.token = '';
+
+          Cookies.remove(ACCOUNT_TOKEN_COOKIE_NAME);
+          break;
+        case ACCOUNT_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    get(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case ACCOUNT_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case ACCOUNT_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.account = payload;
+          break;
+        case ACCOUNT_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    edit(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case ACCOUNT_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case ACCOUNT_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.account = payload;
           break;
         case ACCOUNT_FAIL:
           state.loading = false;

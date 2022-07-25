@@ -1,0 +1,59 @@
+@import 'assets/style/variables/_fonts';
+@import 'assets/style/variables/_colors';
+
+.account-manage-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .75rem;
+
+  .text-container {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .text-container__title {
+      margin: 0;
+      font-family: $title-font;
+      font-weight: 400;
+      font-size: 2.2rem;
+      color: white;
+    }
+  
+    .text-container__text {
+      margin: 0;
+      color: $washy-white;
+      text-align: center;
+    }
+  }
+
+  .children-container {
+    width: 100%;
+    transition: ease-in 300ms;
+  }
+}
+
+.enter {
+  opacity: 0;
+  transform: scale(.95);
+}
+
+.enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.exit-active {
+  opacity: 0;
+  transform: scale(.95);
+}

@@ -1,0 +1,19 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/border/_border-props';
+
+.account-manage {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: .5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: .25rem;
+
+  background-color: $black;
+  border-radius: 0 0 0 $border-radious;
+}

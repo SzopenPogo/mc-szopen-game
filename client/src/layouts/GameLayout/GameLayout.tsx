@@ -1,4 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
+import AccountManage from "components/containers/AccountManageContainer/AccountManage";
 import CharacterSelectModal from "components/modal/CharacterSelectModal/CharacterSelectModal";
 import SpinnerFullscreen from "components/spinner/SpinnerFullscreen/SpinnerFullscreen";
 import { CHARACTER_SUCCESS } from "data/constants/character/character";
@@ -64,7 +65,10 @@ const GameLayout = ({children}: Props) => {
   return (
     <MainLayout>
       {!isLoading && <>
-        {character._id && children}
+        {character._id && <>
+          {children}
+          <AccountManage />
+        </>}
         <CharacterSelectModal 
           activate={!character._id}
           timeout={100}
