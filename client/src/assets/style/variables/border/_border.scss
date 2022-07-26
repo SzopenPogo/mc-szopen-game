@@ -17,3 +17,7 @@
 @mixin balck-border($size) {
   border: $size solid $black;
 }
+
+@mixin light-gray-border($size) {
+  border: $size solid $light-gray;
+}

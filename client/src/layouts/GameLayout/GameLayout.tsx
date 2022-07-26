@@ -1,9 +1,9 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import AccountManage from "components/containers/AccountManageContainer/AccountManage";
 import CharacterSelectModal from "components/modal/CharacterSelectModal/CharacterSelectModal";
 import SpinnerFullscreen from "components/spinner/SpinnerFullscreen/SpinnerFullscreen";
 import { CHARACTER_SUCCESS } from "data/constants/character/character";
 import { GAME_CHARACTER_CREATE_ROUTE, LOGIN_ROUTE } from "data/routes/clientRoutes";
+import GameLayoutHeader from "layouts/GameLayout/components/GameLayoutHeader/GameLayoutHeader";
 import MainLayout from "layouts/MainLayout/MainLayout";
 import { ReactNode, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -67,7 +67,7 @@ const GameLayout = ({children}: Props) => {
       {!isLoading && <>
         {character._id && <>
           {children}
-          <AccountManage />
+          <GameLayoutHeader />
         </>}
         <CharacterSelectModal 
           activate={!character._id}

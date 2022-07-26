@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 import { PASSWORD_MIN_LENGTH, PASSWORD_REG_EXP } from "../../constants/account/password";
+import { CHARACTER_EXPERIENCE_LVL_MULTIPLIER } from "../../constants/character/characterMultipliers";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";
 
 const getConfig = async (req: Request, res: Response) => {
   try {
     const configData = {
       PASSWORD_REG_EXP,
-      PASSWORD_MIN_LENGTH
+      PASSWORD_MIN_LENGTH,
+      CHARACTER_EXPERIENCE_LVL_MULTIPLIER
     }
 
     res.status(200).send(configData);

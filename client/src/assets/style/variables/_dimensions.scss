@@ -1,6 +1,6 @@
 $mobile-width: 62.5rem;
 
 $header-height: 4rem;
-$header-margin: calc($header-height + 1rem);
+$header-margin: calc($header-height);
 
 $noscroll-height: calc(100vh - $header-margin);

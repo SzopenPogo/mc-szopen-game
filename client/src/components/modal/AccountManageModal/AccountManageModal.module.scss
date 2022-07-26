@@ -1,0 +1,9 @@
+@import 'assets/style/variables/_dimensions';
+
+.account-edit-modal {
+  width: 100%;
+
+  @media (min-width: $mobile-width) {
+    width: 25rem;
+  }
+}

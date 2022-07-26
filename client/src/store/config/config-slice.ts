@@ -8,7 +8,8 @@ const configSlice = createSlice({
     error: null,
     configData: {
       PASSWORD_REG_EXP: '',
-      PASSWORD_MIN_LENGTH: 1
+      PASSWORD_MIN_LENGTH: 1,
+      CHARACTER_EXPERIENCE_LVL_MULTIPLIER: 120
     }
   },
   reducers: {

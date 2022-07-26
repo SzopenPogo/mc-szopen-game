@@ -1,0 +1,24 @@
+@import 'assets/style/variables/_dimensions';
+
+$game-header-pading: .25rem;
+
+.game-layout-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: $header-height;
+  padding: $game-header-pading;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+
+  .game-layout-header__logo {
+    height: calc($header-height - $game-header-pading);
+    width: calc($header-height - $game-header-pading);
+    margin-left: .5rem;
+  }
+}
