@@ -9,7 +9,8 @@ const characterSlice = createSlice({
     error: '',
     actionType: '',
     characters: [] as Array<Character>,
-    character: {} as Character
+    character: {} as Character,
+    isCreateMode: false
   },
   reducers: {
     get(state, action) {
@@ -30,6 +31,8 @@ const characterSlice = createSlice({
         case CHARACTER_FAIL:
           state.loading = false;
           state.error = payload;
+          state.characters = [];
+          state.character._id = '';
           state.actionType = CHARACTER_FAIL;
           break;
       }
@@ -39,6 +42,32 @@ const characterSlice = createSlice({
       const character = state.characters.filter(character => character._id === _id);
       
       state.character = character[0];
+    },
+    setCreateMode(state, action) {
+      state.isCreateMode = action.payload;
+    },
+    create(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case CHARACTER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          state.actionType = CHARACTER_REQUEST;
+          break;
+        case CHARACTER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.characters.push(payload);
+          state.character = payload;
+          state.actionType = CHARACTER_SUCCESS;
+          break;
+        case CHARACTER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          state.actionType = CHARACTER_FAIL;
+          break;
+      }
     }
   }
 })

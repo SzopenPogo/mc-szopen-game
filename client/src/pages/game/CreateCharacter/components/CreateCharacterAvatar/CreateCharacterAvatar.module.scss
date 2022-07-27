@@ -1,0 +1,26 @@
+@import 'assets/style/variables/border/_border-props';
+@import 'assets/style/variables/border/_border';
+@import 'assets/style/variables/_fonts';
+
+.create-character-avatar {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .5rem;
+
+  .create-character-avatar__avatar {
+    overflow: hidden;
+    width: 10rem;
+    height: 12rem;
+    border-radius: $border-radious;
+    @include washy-white-border(2px)
+  }
+
+  .create-character__title {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+}

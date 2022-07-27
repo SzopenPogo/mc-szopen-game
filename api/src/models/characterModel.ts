@@ -18,6 +18,7 @@ import dealCharacterDamage from "../methods/character/dealCharacterDamage";
 import takeCharacterDamage from "../methods/character/takeCharacterDamage";
 import { IMissionData } from "../interfaces/mission/IMissionData";
 import setCharacterActiveMissions from "../methods/character/setCharacterActiveMissions";
+import { CHARACTER_NAME_MAX_LENGHT, CHARACTER_NAME_MIN_LENGHT } from "../constants/character/character";
 
 const characterSchema = new Schema<ICharacterModel>({
   accountId: {
@@ -37,7 +38,9 @@ const characterSchema = new Schema<ICharacterModel>({
     type: String,
     trim: true,
     required: true,
-    unique: true
+    unique: true,
+    minlength: CHARACTER_NAME_MIN_LENGHT,
+    maxlength: CHARACTER_NAME_MAX_LENGHT
   },
 
   lvl: {

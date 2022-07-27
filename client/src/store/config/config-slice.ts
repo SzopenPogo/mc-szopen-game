@@ -9,7 +9,9 @@ const configSlice = createSlice({
     configData: {
       PASSWORD_REG_EXP: '',
       PASSWORD_MIN_LENGTH: 1,
-      CHARACTER_EXPERIENCE_LVL_MULTIPLIER: 120
+      CHARACTER_EXPERIENCE_LVL_MULTIPLIER: 120,
+      CHARACTER_NAME_MIN_LENGHT: 1,
+      CHARACTER_NAME_MAX_LENGHT: 1
     }
   },
   reducers: {
