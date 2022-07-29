@@ -68,6 +68,28 @@ const characterSlice = createSlice({
           state.actionType = CHARACTER_FAIL;
           break;
       }
+    },
+    buyStat(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case CHARACTER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          state.actionType = CHARACTER_REQUEST;
+          break;
+        case CHARACTER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.character = payload;
+          state.actionType = CHARACTER_SUCCESS;
+          break;
+        case CHARACTER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          state.actionType = CHARACTER_FAIL;
+          break;
+      }
     }
   }
 })

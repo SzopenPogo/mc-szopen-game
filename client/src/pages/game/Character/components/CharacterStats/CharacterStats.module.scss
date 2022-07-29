@@ -1,0 +1,24 @@
+@import 'pages/game/Character/components/variables/_character-container';
+@import 'pages/game/Character/components/variables/_character-dimenssions';
+@import 'assets/style/variables/_dimensions';
+
+.character-stats {
+  width: $character-container-mobile-width;
+  padding: 1rem;
+  margin: 0;
+
+  @include character-container();
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .5rem;
+
+  list-style: none;
+
+  @media (min-width: $mobile-width) {
+    width: 40vw;
+  }
+}

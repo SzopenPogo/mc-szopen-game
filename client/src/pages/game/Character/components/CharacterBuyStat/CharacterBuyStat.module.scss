@@ -1,0 +1,25 @@
+@import 'assets/style/variables/border/_border-props';
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/fonts';
+@import 'assets/style/variables/transition';
+
+.character-buy-stat {
+  cursor: pointer;
+
+  padding: 0 .5rem;
+
+  border-radius: 0 0 $border-radious $border-radious;
+  border: none;
+  outline: none;
+  background-color: $yellow;
+
+  font-size: 1.1rem;
+  color: black;
+  font-family: $title-font;
+
+  transition: $transition-150;
+
+  &:hover {
+    background-color: $light-yellow;
+  }
+}

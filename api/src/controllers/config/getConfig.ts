@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { PASSWORD_MIN_LENGTH, PASSWORD_REG_EXP } from "../../constants/account/password";
 import { CHARACTER_NAME_MAX_LENGHT, CHARACTER_NAME_MIN_LENGHT } from "../../constants/character/character";
-import { CHARACTER_EXPERIENCE_LVL_MULTIPLIER } from "../../constants/character/characterMultipliers";
+import { CHARACTER_EXPERIENCE_LVL_MULTIPLIER, CHARACTER_STAT_PRICE_MULTIPLIER } from "../../constants/character/characterMultipliers";
 import { createErrorMessage } from "../../utils/messages/createErrorMessage";
 
 const getConfig = async (req: Request, res: Response) => {
@@ -11,7 +11,8 @@ const getConfig = async (req: Request, res: Response) => {
       PASSWORD_MIN_LENGTH,
       CHARACTER_EXPERIENCE_LVL_MULTIPLIER,
       CHARACTER_NAME_MIN_LENGHT,
-      CHARACTER_NAME_MAX_LENGHT
+      CHARACTER_NAME_MAX_LENGHT,
+      CHARACTER_STAT_PRICE_MULTIPLIER
     }
 
     res.status(200).send(configData);

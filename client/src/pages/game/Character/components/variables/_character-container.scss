@@ -1,0 +1,12 @@
+@import 'pages/game/Character/components/variables/_character-dimenssions';
+@import 'assets/style/variables/border/_border';
+@import 'assets/style/variables/border/_border-props';
+@import 'assets/style/variables/_colors';
+
+@mixin character-container {
+  width: $character-container-mobile-width;
+
+  background-color: $gray;
+  border-radius: $border-radious;
+  @include washy-white-border(2px);
+}

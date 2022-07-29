@@ -1,0 +1,33 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/border/_border-props';
+
+.character-stat {
+  width: 45%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  .character-stat__info {
+    overflow: hidden;
+    width: 100%;
+    padding: .5rem;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    background-color: $light-gray;
+    border-radius: $border-radious;
+
+    .character-stat__info--name, 
+    .character-stat__info--value {
+      max-width: 50%;
+    }
+    
+    .character-stat__info--value {
+      font-weight: bold;
+    }
+  }
+}
