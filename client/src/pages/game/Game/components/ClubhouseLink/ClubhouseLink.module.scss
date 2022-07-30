@@ -1,0 +1,24 @@
+@import 'assets/style/variables/_dimensions';
+@import 'assets/style/variables/_transition';
+
+
+.clubhouse-link {
+  width: 90%;
+  height: 15rem;
+
+  background-image: url('../../../../../assets/images/layout/clubhouse.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transition: $transition-150;
+
+  @media (min-width: $mobile-width) {
+    width: 30rem;
+    height: 22rem;
+
+    &:hover {
+      filter: brightness(1.25);
+    }
+  }
+}

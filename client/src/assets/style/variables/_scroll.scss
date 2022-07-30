@@ -1,9 +1,15 @@
 @import './colors';
 @import './border/border-props';
+@import './dimensions';
 
 @mixin scroll($color) {
   &::-webkit-scrollbar {
     height: .65rem;
+    width: .5rem;
+
+    @media (min-width: $mobile-width) {
+      width: .75rem;
+    }
   }
   
   &::-webkit-scrollbar-thumb {

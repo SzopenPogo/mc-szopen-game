@@ -1,6 +1,8 @@
 import { Dispatch } from '@reduxjs/toolkit';
+import CursorStickyContainer from 'components/containers/CursorStickyContainer/CursorStickyContainer';
 import { CharacterFormatedStats } from 'data/interfaces/character/CharacterFormatedStats';
 import CharacterBuyStat from 'pages/game/Character/components/CharacterBuyStat/CharacterBuyStat';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { characterBuyStat } from 'store/character/actions/character-buy-stat-actions';
@@ -17,11 +19,21 @@ const CharacterStat = ({
   statistic,
   money
 }: Props) => {
-  type NewType = Dispatch<any>;
-
-  const dispatch = useDispatch() as NewType;
+  const dispatch = useDispatch() as Dispatch<any>;
 
   const token = useSelector((state: RootState) => state.account.token);
+
+  const [isDescription, setIsDescription] = useState<boolean>(false);
+
+  const enableDescription = () => {
+    if(statistic.description) {
+      setIsDescription(true);
+    }
+  }
+
+  const disableDescription = () => {
+    setIsDescription(false);
+  }
 
   const buyStatHandler = () => {
     if(statistic.statName) {
@@ -30,19 +42,26 @@ const CharacterStat = ({
   }
 
   return (
-    <li className={classes['character-stat']}>
-      <div className={classes['character-stat__info']}>
-        <span className={classes['character-stat__info--name']}>{statistic.name}</span>
-        <span className={classes['character-stat__info--value']}>{statistic.value}</span>
-      </div>
-      {statistic.statName && <CharacterBuyStat 
-        _id={_id}
-        statName={statistic.statName} 
-        statValue={statistic.value} 
-        money={money} 
-        onClick={buyStatHandler}
-      />}
-    </li>
+    <>
+      <li className={classes['character-stat']}>
+        <div 
+          className={classes['character-stat__info']}
+          onMouseEnter={enableDescription}
+          onMouseLeave={disableDescription}
+        >
+          <span className={classes['character-stat__info--name']}>{statistic.name}</span>
+          <span className={classes['character-stat__info--value']}>{statistic.value}</span>
+        </div>
+        {statistic.statName && <CharacterBuyStat 
+          statValue={statistic.value} 
+          money={money} 
+          onClick={buyStatHandler}
+        />}
+      </li>
+      {isDescription && <CursorStickyContainer>
+        <span>{statistic.description}</span>  
+      </CursorStickyContainer>}
+    </>
   )
 }
 

@@ -3,16 +3,12 @@ import { RootState } from 'store';
 import classes from './CharacterBuyStat.module.scss';
 
 interface Props {
-  _id: string;
-  statName: string;
   statValue: number;
   money: number;
   onClick: () => void;
 }
 
 const CharacterBuyStat = ({
-  _id,
-  statName,
   statValue,
   money,
   onClick
@@ -25,6 +21,7 @@ const CharacterBuyStat = ({
       type='button'
       onClick={onClick}
       className={classes['character-buy-stat']}
+      disabled={money < statPrice}
     >
       Buy {statPrice}$
     </button>

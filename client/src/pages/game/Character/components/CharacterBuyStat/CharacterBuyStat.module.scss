@@ -22,4 +22,8 @@
   &:hover {
     background-color: $light-yellow;
   }
+
+  &:disabled {
+    background-color: $red;
+  }
 }

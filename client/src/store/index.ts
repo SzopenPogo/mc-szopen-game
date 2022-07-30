@@ -4,6 +4,7 @@ import authenticationSlice from "store/authentication/authentication-slice";
 import characterSlice from "store/character/character-slice";
 import clientSlice from "store/client/client-slice";
 import configSlice from "store/config/config-slice";
+import missionSlice from "store/mission/mission-slice";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     config: configSlice.reducer,
     authentication: authenticationSlice.reducer,
     account: accountSlice.reducer,
-    character: characterSlice.reducer
+    character: characterSlice.reducer,
+    mision: missionSlice.reducer
   }
 });
 

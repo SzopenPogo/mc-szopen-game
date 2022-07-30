@@ -1,0 +1,23 @@
+@import 'assets/style/variables/_transition';
+
+.mission-giver {
+  cursor: pointer;
+
+  width: 13rem;
+  height: 30rem;
+
+  background-color: transparent;
+  background-image: url('../../../../../assets/images/layout/missiongiver.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  border: none;
+  outline: none;
+
+  transition: $transition-150;
+
+  &:hover {
+    filter: brightness(1.35);
+  }
+}
