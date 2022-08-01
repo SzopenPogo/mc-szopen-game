@@ -33,6 +33,65 @@ const missionSlice = createSlice({
           state.missions = [];
           break;
       }
+    },
+    start(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case MISSION_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case MISSION_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.activeMission = payload;
+
+          break;
+        case MISSION_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    getActive(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case MISSION_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case MISSION_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.activeMission = payload;
+          break;
+        case MISSION_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    finish(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case MISSION_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case MISSION_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.completedMission = payload;
+          state.activeMission._id = ''
+          break;
+        case MISSION_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
     }
   }
 });

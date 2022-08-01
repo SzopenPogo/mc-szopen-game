@@ -7,27 +7,36 @@ import MissionDetail from 'pages/game/Clubhouse/components/MissionDetail/Mission
 import MainButton from 'components/button/MainButton/MainButton';
 import { useNavigate } from 'react-router';
 import { GAME_MISSION_ROUTE } from 'data/routes/clientRoutes';
+import { useDispatch } from 'react-redux';
+import { startMission } from 'store/mission/actions/mission-start-actions';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 interface Props extends MissionData {
-  index: number
+  index: number;
 }
 
 const Mission = ({
-  _id,
   name,
   description,
   durationInSecounds,
-  reward
+  reward,
+  index
 }: Props) => {
+  const dispatch = useDispatch() as any;
   const navigate = useNavigate();
+
+  const token = useSelector((state: RootState) => state.account.token);
+  const characterId = useSelector((state: RootState) => state.character.character._id);
 
   const {experience, money} = reward;
   const missionDurationInMinutes = (durationInSecounds / 60);
 
   const startMissionHandler = () => {
-    
-    navigate(GAME_MISSION_ROUTE)
+    dispatch(startMission(token, characterId, index));
+    navigate(GAME_MISSION_ROUTE);
   }
+
 
   return (
     <li className={classes['mission']}>

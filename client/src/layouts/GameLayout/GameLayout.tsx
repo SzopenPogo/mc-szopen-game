@@ -1,7 +1,7 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import CharacterSelectModal from "components/modal/CharacterSelectModal/CharacterSelectModal";
 import SpinnerFullscreen from "components/spinner/SpinnerFullscreen/SpinnerFullscreen";
-import { CHARACTER_FAIL, CHARACTER_SUCCESS } from "data/constants/character/character";
+import { CHARACTER_FAIL } from "data/constants/character/character";
 import { GAME_CHARACTER_CREATE_ROUTE, LOGIN_ROUTE } from "data/routes/clientRoutes";
 import GameLayoutHeader from "layouts/GameLayout/components/GameLayoutHeader/GameLayoutHeader";
 import MainLayout from "layouts/MainLayout/MainLayout";
@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import { RootState } from "store";
 import { setCharacterCreateMode } from "store/character/actions/character-create-mode-actions";
 import { getCharacter } from "store/character/actions/character-get-actions";
+import { getMyCharacterById } from "store/character/actions/character-get-me-by-id-actions";
 
 interface Props {
   children: ReactNode;
@@ -27,7 +28,8 @@ const GameLayout = ({children}: Props) => {
     characters,
     character,
     actionType: characterActionType,
-    isCreateMode
+    isCreateMode,
+    selectedCharacterId
   } = useSelector((state: RootState) => state.character);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,10 +59,16 @@ const GameLayout = ({children}: Props) => {
       navigate(LOGIN_ROUTE);
     }
 
-    if(token) {
+    // Get character list if user is authenticated and no character has been selected
+    if(token && !selectedCharacterId) {
       dispatch(getCharacter(token));
     }
-  }, [token, navigate, dispatch])
+
+    // Get selected character data
+    if(selectedCharacterId) {
+      dispatch(getMyCharacterById(token, selectedCharacterId));
+    }
+  }, [token, selectedCharacterId, navigate, dispatch])
 
   useEffect(() => {
     const windowUrl = window.location.pathname;

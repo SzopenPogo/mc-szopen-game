@@ -10,7 +10,8 @@ const characterSlice = createSlice({
     actionType: '',
     characters: [] as Array<Character>,
     character: {} as Character,
-    isCreateMode: false
+    isCreateMode: false,
+    selectedCharacterId: ''
   },
   reducers: {
     get(state, action) {
@@ -42,6 +43,7 @@ const characterSlice = createSlice({
       const character = state.characters.filter(character => character._id === _id);
       
       state.character = character[0];
+      state.selectedCharacterId = character[0]._id;
     },
     setCreateMode(state, action) {
       state.isCreateMode = action.payload;
@@ -70,6 +72,28 @@ const characterSlice = createSlice({
       }
     },
     buyStat(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case CHARACTER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          state.actionType = CHARACTER_REQUEST;
+          break;
+        case CHARACTER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.character = payload;
+          state.actionType = CHARACTER_SUCCESS;
+          break;
+        case CHARACTER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          state.actionType = CHARACTER_FAIL;
+          break;
+      }
+    },
+    getMeById(state, action) {
       const { type, payload } = action.payload;
       
       switch (type) {
