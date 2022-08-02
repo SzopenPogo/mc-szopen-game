@@ -1,7 +1,30 @@
+@import 'assets/style/variables/_fonts';
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_dimensions';
+
 .mission-data {
   width: 100%;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: .5rem;
+
+  .mission-data__title {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-family: $title-font;
+  }
+
+  .mission-data__description {
+    font-size: 1rem;
+    color: $washy-white;
+    text-align: center;
+
+    @media (min-width: $mobile-width) {
+      max-width: 50%;
+    }
+  }
 }

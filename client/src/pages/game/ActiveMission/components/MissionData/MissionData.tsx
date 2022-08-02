@@ -1,15 +1,18 @@
 import classes from './MissionData.module.scss';
 
 interface Props {
-  name: string
+  name: string;
+  description: string;
 }
 
 const MissionData = ({
-  name
+  name,
+  description
 }: Props) => {
   return (
     <div className={classes['mission-data']}>
-      <h1>{name}</h1>
+      <h1 className={classes['mission-data__title']}>{name}</h1>
+      <span className={classes['mission-data__description']}>{description}</span>
     </div>
   )
 }

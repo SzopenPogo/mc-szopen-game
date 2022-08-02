@@ -26,6 +26,7 @@ const missionSlice = createSlice({
           state.loading = false;
           state.error = '';
           state.missions = payload;
+          state.completedMission.isCompleted = false;
           break;
         case MISSION_FAIL:
           state.loading = false;
@@ -46,7 +47,7 @@ const missionSlice = createSlice({
           state.loading = false;
           state.error = '';
           state.activeMission = payload;
-
+          state.completedMission.isCompleted = false;
           break;
         case MISSION_FAIL:
           state.loading = false;
@@ -66,6 +67,7 @@ const missionSlice = createSlice({
           state.loading = false;
           state.error = '';
           state.activeMission = payload;
+          state.completedMission.isCompleted = false;
           break;
         case MISSION_FAIL:
           state.loading = false;

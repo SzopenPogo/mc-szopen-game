@@ -60,6 +60,8 @@ const finishMission = async (req: IAuthMissionRequest, res: Response) => {
       reward, 
       isCompleted: mission.isCompleted, 
       isSuccess: mission.isSuccess, 
+      enemyName: enemy.name,
+      enemyHealth: enemy.health,
       combatLog: enemy.combatLog
     }
 

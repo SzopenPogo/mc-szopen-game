@@ -1,0 +1,29 @@
+@import 'assets/style/variables/_transition';
+
+.mission-fight {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+
+  transition: $transition-150;
+  
+}
+
+.mission-fight--hit {
+  animation: hit 400ms;
+}
+
+@keyframes hit {
+  0% {
+    justify-content: space-around;
+  }
+  50% {
+    justify-content: center;
+  }
+  100% {
+    justify-content: space-around;
+  }
+}

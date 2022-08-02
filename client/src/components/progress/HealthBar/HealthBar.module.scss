@@ -1,0 +1,45 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_shadows';
+@import 'assets/style/variables/border/_border';
+@import 'assets/style/variables/border/_border-props';
+@import 'assets/style/variables/_transition';
+
+.health-bar {
+  overflow: hidden;
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: $washy-white;
+  @include light-gray-border(.2rem);
+  border-radius: $border-radious;
+
+  @include inser-shadow();
+
+  .health-bar__info {
+    z-index: 2;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .health-bar__health {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    background-color: $dark-red;
+    filter: blur(2px);
+
+    transition: $transition-150;
+
+    
+  }
+}

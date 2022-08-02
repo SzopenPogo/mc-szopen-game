@@ -7,8 +7,6 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { finishMission } from 'store/mission/actions/mission-finish-actions';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { useNavigate } from 'react-router';
-import { GAME_MISSION_SUMMARY_ROUTE } from 'data/routes/clientRoutes';
 import getUnixTime from 'utils/time/getUnixTime';
 
 interface Props {
@@ -25,7 +23,6 @@ const MissionStatusBar = ({
   startUnixTime
 }: Props) => {
   const dispatch = useDispatch() as Dispatch<any>;
-  const navigate = useNavigate();
 
   const token = useSelector((state: RootState) => state.account.token);
 
@@ -36,8 +33,7 @@ const MissionStatusBar = ({
 
   const finishMissionHandler = useCallback(() => {
     dispatch(finishMission(token, characterId, missionId));
-    navigate(GAME_MISSION_SUMMARY_ROUTE);
-  }, [dispatch, navigate, token, characterId, missionId]);
+  }, [dispatch, token, characterId, missionId]);
 
   useEffect(() => {
     if(isMissionComplete) {

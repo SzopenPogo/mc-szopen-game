@@ -39,7 +39,7 @@ const startMission = async (req: IAuthMissionRequest, res: Response) => {
       characterId: character._id,
       isCompleted: false,
       startUnixTime: missionStartUnixTime,
-      finishUnixTime: missionStartUnixTime + 15,  //TEST TIME!!!! CHANGE TO missionFinishUnixTime
+      finishUnixTime: missionStartUnixTime + 5,  //TEST TIME!!!! CHANGE TO missionFinishUnixTime
       name,
       description,
       reward,

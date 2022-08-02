@@ -1,4 +1,10 @@
+@import 'assets/style/variables/_dimensions';
+
 .mission-time-bar {
   width: 100%;
   height: 3rem;
+
+  @media (min-width: $mobile-width) {
+    max-width: 75%;
+  }
 }
