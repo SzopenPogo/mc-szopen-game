@@ -1,11 +1,16 @@
+import MainButton from 'components/button/MainButton/MainButton';
 import MissionCharacter from 'pages/game/MissionSummary/components/MissionCharacter/MissionCharacter';
 import MissionEnemy from 'pages/game/MissionSummary/components/MissionEnemy/MissionEnemy';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import classes from './MissionFight.module.scss';
 
-const MissionFight = () => {
+interface Props {
+  finishMission: () => void;
+}
+
+const MissionFight = ({finishMission}: Props) => {
   
   const { combatLog } = useSelector((state: RootState) => state.mision.completedMission);
   
@@ -14,21 +19,32 @@ const MissionFight = () => {
 
   const currentEnemyHealth = combatLog[combatStatus].enemyHealth;
   const currentCharacterHealth = combatLog[combatStatus].characterHealth;
+  const characterDamage = combatLog[combatStatus].characterDamage;
+  const enemyDamage = combatLog[combatStatus].enemyDamage;
+  const isFight = combatStatus < combatLog.length - 1
 
+  const finishMissionHandler = useCallback(() => {
+    finishMission();
+  }, [finishMission])
+
+  //FIGHT
   useEffect(() => {
+    if(!isFight) {
+      finishMissionHandler();
+    }
+
     const fightTimeout = setTimeout(() => {
-    
-      if(combatStatus < combatLog.length - 1) {
+      if(isFight) {
         setCombatStatus(prevcombatStatus => prevcombatStatus += 1);
       }
     }, 1500);
 
     return () => {
-      
       clearTimeout(fightTimeout);
     }
-  }, [combatStatus, combatLog.length]);
+  }, [isFight, combatStatus, finishMissionHandler]);
 
+  //ANIMATION
   useEffect(() => {
     setIsAttack(true);
     const fightAnimationTimeout = setTimeout(() => {
@@ -39,23 +55,33 @@ const MissionFight = () => {
       clearTimeout(fightAnimationTimeout);
     }
   }, [combatStatus])
-  
-  
 
-  const missionFightClass = isAttack 
-    ? `${classes['mission-fight']} ${classes['mission-fight--hit']}`
-    : `${classes['mission-fight']}`;
+  const skipFightHandler = () => {
+    setCombatStatus(combatLog.length - 1);
+  }
+
+  const missionFightCharactersClass = isAttack 
+    ? `${classes['mission-fight__characters']} ${classes['mission-fight__characters--hit']}`
+    : `${classes['mission-fight__characters']}`;
 
   return (
-    <div className={missionFightClass}>
-      <MissionCharacter 
-        currentHealth={currentCharacterHealth}
-        isHitted={isAttack}
-      />
-      <MissionEnemy
-        currentHealth={currentEnemyHealth}
-        isHitted={isAttack}
-      />
+    <div className={classes['mission-fight']}>
+      <div className={missionFightCharactersClass}>
+        <MissionCharacter 
+          currentHealth={currentCharacterHealth}
+          isHitted={isAttack}
+          enemyDamage={enemyDamage}
+        />
+        <MissionEnemy
+          currentHealth={currentEnemyHealth}
+          isHitted={isAttack}
+          characterDamage={characterDamage}
+        />
+      </div>
+      <div className={classes['mission-fight__buttons']}>
+        {isFight && <MainButton title={'Skip'} onClick={skipFightHandler} />}
+        {!isFight && <MainButton title={'Finish'} onClick={finishMissionHandler} />}
+      </div>
     </div>
   )
 }

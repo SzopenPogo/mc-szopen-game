@@ -1,0 +1,71 @@
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_fonts';
+@import 'assets/style/variables/_dimensions';
+
+.mission-summary-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: $mobile-width) {
+    width: 25rem;
+  }
+
+  .mission-summary-modal__title {
+    margin: 0;
+    font-family: $title-font;
+    font-weight: 400;
+    font-size: 3rem;
+    color: $yellow;
+  }
+
+  .mission-summary-modal__title--defeat {
+    color: $red;
+  }
+
+  .mission-summary-modal__reward {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5rem;
+
+    .mission-summary-modal__reward--title {
+      margin: 0;
+      font-weight: 300;
+      text-transform: capitalize;
+    }
+
+    .mission-summary-modal__reward--reward {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      animation: move 4000ms infinite;
+    }
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: scale(1);
+  }
+  4% {
+    transform: cale(1.025);
+  }
+  5% {
+    transform: scale(1.05);
+  }
+  8% {
+    transform: scale(1);
+  }
+}

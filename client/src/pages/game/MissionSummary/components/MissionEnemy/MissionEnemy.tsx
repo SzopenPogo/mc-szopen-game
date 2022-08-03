@@ -6,9 +6,14 @@ import { RootState } from 'store';
 interface Props {
   currentHealth: number;
   isHitted: boolean;
+  characterDamage: number;
 }
 
-const MissionEnemy = ({currentHealth,isHitted}: Props) => {
+const MissionEnemy = ({
+  currentHealth,
+  isHitted,
+  characterDamage
+}: Props) => {
   const { enemyHealth, enemyName } = useSelector((state: RootState) => state.mision.completedMission);
 
   
@@ -18,6 +23,7 @@ const MissionEnemy = ({currentHealth,isHitted}: Props) => {
       current={currentHealth}
       name={enemyName}
       isHitted={isHitted}
+      receivedDamage={characterDamage}
     >
       <EnemyAvatar />
     </MissionAvatar>

@@ -1,17 +1,17 @@
-.mission-detail {
+.reward-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
   gap: .25rem;
 
-  .mission-detail__image {
+  .reward-container__image {
     width: 1.25rem;
     height: 1.25rem;
     object-fit: contain;
   }
 
-  .mission-detail__text {
+  .reward-container__text {
     font-size: 1.5rem;
   }
 }

@@ -6,7 +6,8 @@ interface Props {
 }
 
 const HealthBar = ({max, current}: Props) => {
-  const healthPercent = (current/max*100).toFixed();
+  const healthPercent = +(current/max*100).toFixed();
+  const healthBarWidth = healthPercent >= 0 ? healthPercent : 0;
 
   return (
     <div className={classes['health-bar']}>
@@ -16,7 +17,7 @@ const HealthBar = ({max, current}: Props) => {
         {`${current} / ${max}  (${healthPercent}%)`}
       </span>
       <span
-        style={{width: `${healthPercent}%`}}
+        style={{width: `${healthBarWidth}%`}}
         className={classes['health-bar__health']}
       />
     </div>

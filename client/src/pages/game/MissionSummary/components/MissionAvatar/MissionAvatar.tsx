@@ -8,6 +8,7 @@ interface Props {
   current: number;
   name: string;
   isHitted: boolean;
+  receivedDamage: number;
 }
 
 const MissionAvatar = ({
@@ -15,12 +16,13 @@ const MissionAvatar = ({
   max, 
   current,
   name,
-  isHitted
+  isHitted,
+  receivedDamage
 }: Props) => {
   const missionAvatarClass = isHitted
     ? `${classes['mission-avatar']} ${classes['mission-avatar--hit']}`
-    : `${classes['mission-avatar']}`
-
+    : `${classes['mission-avatar']}`;
+    
   return (
     <div className={missionAvatarClass}>
       {children}
@@ -30,6 +32,7 @@ const MissionAvatar = ({
           <HealthBar max={max} current={current} />
         </div>
       </div>
+      {isHitted && <span className={classes['mission-avatar__damage']}>- {receivedDamage}</span>}
     </div>
   )
 }
