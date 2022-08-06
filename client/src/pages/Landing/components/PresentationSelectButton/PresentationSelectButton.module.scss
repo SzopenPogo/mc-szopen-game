@@ -1,0 +1,38 @@
+@import 'assets/style/variables/border/_border';
+@import 'assets/style/variables/_colors';
+@import 'assets/style/variables/_transition';
+
+$presentation-select-size: 3.5rem;
+$presentation-select-border-size: 2px;
+
+@mixin select-presentation-button {
+  @include white-border($presentation-select-border-size);
+  background-color: $gray;
+  filter: brightness(1.1);
+}
+
+.presentation-select {
+  cursor: pointer;
+
+  width: $presentation-select-size;
+  height: $presentation-select-size;
+
+  @include light-gray-border($presentation-select-border-size);
+  border-radius: 50%;
+  outline: none;
+
+  background-color: $black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  transition: $transition-150;
+
+  &:hover {
+    @include select-presentation-button();
+  }
+}
+
+.presentation-select--selected {
+  @include select-presentation-button();
+}

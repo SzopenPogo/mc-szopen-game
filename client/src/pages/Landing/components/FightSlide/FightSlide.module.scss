@@ -1,0 +1,49 @@
+@import 'assets/style/variables/_transition';
+@import 'assets/style/variables/_dimensions';
+
+.fight-slide {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  .fight-slide__avatars {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+    transition: $transition-150;
+  }
+
+  .fight-slide__button {
+    width: 100%;
+
+    @media (min-width: $mobile-width) {
+      width: 20rem;
+    }
+  }
+}
+
+.fight-slide__avatars--active {
+  animation: hit 400ms infinite;
+}
+
+
+
+@keyframes hit {
+  0% {
+    justify-content: space-around;
+  }
+  25% {
+    justify-content: center;
+  }
+  50% {
+    justify-content: space-around;
+  }
+}

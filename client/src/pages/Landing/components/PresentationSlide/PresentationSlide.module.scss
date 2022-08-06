@@ -1,0 +1,42 @@
+@import 'assets/style/variables/_fonts';
+
+.presentation-slide {
+  width: 100%;
+  padding: 1rem 0;
+  
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .5rem;
+
+  transition: linear 300ms;
+
+  .presentation-slide__title {
+    margin: 0;
+    font-family: $title-font;
+    font-weight: 400;
+    font-size: 2rem;
+  }
+}
+
+.enter {
+  opacity: 0;
+  transform: scale(.95);
+}
+
+.enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.exit-active {
+  opacity: 0;
+  transform: scale(.95);
+}

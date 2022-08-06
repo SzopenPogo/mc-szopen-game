@@ -1,0 +1,25 @@
+@import 'assets/style/variables/_dimensions';
+@import 'assets/style/variables/border/_border';
+
+.play {
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url('../../../../assets/images/layout/gang.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @include light-gray-border(.5rem);
+  border-left: none;
+  border-right: none;
+
+  @media (min-width: $mobile-width) {
+    justify-content: flex-start;
+  }
+}
